@@ -1,0 +1,6 @@
+initialize.js
+node_modules/
+*.log
+package-lock.json
+package.json
+.github/
