@@ -1,16 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Tabenspace/style/centre-style.css">
-    <title>Your Command Centre - Tabenspace</title>
-</head>
-<body>
-    <div class="tile">
-        <img class="logo" href="https://www.amazon.in/" src="https://1000logos.net/wp-content/uploads/2016/10/Amazon-logo-meaning.jpg">
-    <a href="" class="tilename">Amazon</a>
+<html>
+  <head>
+    <title>UI TabenSpace</title>
+    <style>
+
+      .tile1 {
+        display: inline-block;
+        width: 200px;
+        height: 150px;
+        background-color: #ff8585;
+        padding: 5px;
+        margin: 5px;
+        position: relative;
+        left: 25px;
+        top: 150px;
+        justify-content: center;
+        align-items: flex-end;
+        cursor: pointer;
+      }
+
+      .tile1:hover {
+        background-color: #e20000;
+      }
+
+    </style>
+  </head>
+  <body bgcolor="#FFD7CF">
+    <div id="tile-container">
+        <div class="tile"></div>
+
+    <div class="tile1" id="add-tile">
+        <img src="">
     </div>
-</body>
+
+
+    <script>
+    
+const addButton = document.getElementById('add-tile');
+const tileContainer = document.getElementById('tile-container');
+function addTile() {
+  const newTile = document.createElement('div');
+  newTile.classList.add('tile1');
+  tileContainer.appendChild(newTile);
+}
+addButton.addEventListener('click', addTile);
+    </script>
+  </body>
 </html>
