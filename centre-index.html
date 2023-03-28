@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/centre-style.css">
+    <script src="scripts/centre-tile.js"></script>
     <title>Your Command Centre - Tabenspace</title>
 </head>
 <body>
@@ -12,7 +13,8 @@
     <div class="navrow">
         <div class="form__group field">
             <input required="" placeholder="Name" class="form__field" type="input">
-            <label class="form__label" for="name">Search Here</label>
+            <label class="form__label">Search Here</label>
+            <button type="submit" action="">Search</button>
         </div>
         <div class="acc">
             <a>Hey, Arunabh</a>
@@ -20,10 +22,14 @@
         </div>
     </div>
 
-    <div class="tile">
-        <img href="https://www.amazon.in/" src="/src/images/amazon-logo.png">
+    <a href="https://www.amazon.in/" class="tile">
+        <img src="/src/images/amazon-logo.png">
         <label id="tilename">Amazon</label>
-    </div>
+    </a>
+    <a  href="https://www.flipkart.com/"class="tile">
+        <img src="/src/images/Flipkart-logo.png">
+        <label id="tilename">Flipkart</label>
+    </a>
     
 </body>
 </html>
