@@ -12,9 +12,11 @@
     <frameset></frameset>
     <div class="navrow">
         <div class="form__group field">
-            <input required="" placeholder="Name" class="form__field" type="input">
-            <label class="form__label">Search Here</label>
-            <button type="submit" action="">Search</button>
+            <form action="search" method="get">
+            <input required="" placeholder="Name" class="form__field" type="search" id="search" name="q">
+            <label class="form__label" for="name">Search Here</label>
+            <button type="submit">Search</button>
+        </form>
         </div>
         <div class="acc">
             <a>Hey, Arunabh</a>

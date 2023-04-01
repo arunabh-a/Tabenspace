@@ -8,8 +8,10 @@ function addTile() {
 addButton.addEventListener('click', addTile);
 
 
-const form = document.getElementById('form_field');
-form_field.addEventListener('submit', (event) => {
+
+const form = document.querySelector('form');
+
+form.addEventListener('submit', (event) => {
   event.preventDefault();
   const query = form.elements.q.value;
   const url = `https://www.google.com/search?q=${query}`;
