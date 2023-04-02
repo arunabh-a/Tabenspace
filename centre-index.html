@@ -5,25 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/centre-style.css">
-    <script src="scripts/centre-tile.js"></script>
+    <script type="text/javascipt" src="scripts/centre-tile.js"></script>
+    <script src="scripts/Search.js" type="text/javascipt"></script>
     <title>Your Command Centre - Tabenspace</title>
 </head>
 <body>
-    <frameset></frameset>
     <div class="navrow">
+        <script>
+            function Search() {
+                var search = document.getElementById("search").value;
+                window.open("https://www.google.com/search?q=" + search);
+            }
+        </script>
         <div class="form__group field">
-            <form action="search" method="get">
-            <input required="" placeholder="Name" class="form__field" type="search" id="search" name="q">
+        
+            <input type="text" id="search" required="" placeholder="Name" class="form__field" name="querysearch">
             <label class="form__label" for="name">Search Here</label>
-            <button type="submit">Search</button>
-        </form>
+            <button onclick="Search();">Search</button>
         </div>
+
         <div class="acc">
             <a>Hey, Arunabh</a>
             <img src="" alt="" class="pfp">
         </div>
     </div>
-
+    
+<div class="tiles">
     <a href="https://www.amazon.in/" class="tile">
         <img src="/src/images/amazon-logo.png">
         <label id="tilename">Amazon</label>
@@ -32,6 +39,6 @@
         <img src="/src/images/Flipkart-logo.png">
         <label id="tilename">Flipkart</label>
     </a>
-    
+    </div>
 </body>
 </html>
