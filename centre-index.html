@@ -7,28 +7,22 @@
     <link rel="stylesheet" href="/style/centre-style.css">
     <script type="text/javascipt" src="scripts/centre-tile.js"></script>
     <script src="scripts/Search.js" type="text/javascipt"></script>
-    <title>Your Command Centre - Tabenspace</title>
+    <title>Your Control Centre - Tabenspace</title>
 </head>
 <body>
     <div class="navrow">
         <script>
-                var enter = document.getElementById("search");
-                enter.onkeyup = function(event) {
-                    if (event.keyCode === 13) {
-                        document.getElementById("search").click();
-                        Search();     
-                    }
-                }
             function Search(){
                 var search = document.getElementById("search").value;
                 window.open("https://www.google.com/search?q=" + search);
             }
         </script>
         <div class="form__group field">
-        
-            <input type="text" id="search" required="" placeholder="Name" class="form__field" name="querysearch">
+            <form action="" method="get" id="search-form">
+            <input type="search" name="querysearch" id="search" required="" placeholder="Name" class="form__field">            
             <label class="form__label" for="name">Search Here</label>
-            <button onclick="Search();">Search</button>
+            <button hidden= "hidden" type="submit" onclick="Search();">Search</button>
+            </form>
         </div>
 
         <div class="acc">
