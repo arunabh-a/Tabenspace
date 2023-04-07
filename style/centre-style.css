@@ -13,32 +13,19 @@ html {
 
 .tile img {
     width: 45%;
-    display: inline;
-    position: relative;
-    vertical-align: top;
-    
+    position: fixed;
+    align-content: normal;
+    vertical-align: top;    
 
-}
-
-.tile label {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    display: inline;
-    position: relative;
-    width: 45%;
-    text-align:end;
-    vertical-align: text-bottom;
 }
 
 .tile label{
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    display: flex;
     position: absolute;
     bottom: 0;
     padding-bottom: 15px;
     top: 2;
-    left: 37%;
-    width: 5%;
-    text-align: center;
+    text-align: justify;
 } 
 
 .tile {
@@ -52,13 +39,11 @@ html {
     box-shadow: 0px 5px 20px #929AAB;
     backdrop-filter: blur(6px);
     border-radius: 17px;
-    text-align: center;
+    text-align: relative;
     cursor: pointer;
     margin-bottom: 10px;
     transition: all 0.5s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /* align-items: relative; */
     user-select: none;
     font-weight: bolder;
 }
@@ -120,7 +105,7 @@ html {
     padding-bottom: 6px;
     font-weight: 70;
     border-width: 3px;
-    border-image: linear-gradient(to right, #362ae5, #161def);
+    border-image: linear-gradient(to right, #6641f4, #6641f4);
     border-image-slice: 1;
 }
 
