@@ -1,11 +1,7 @@
-const addButton = document.getElementById('add-tile');
-const tileContainer = document.getElementById('tile-container');
-function addTile() {
-  const newTile = document.createElement('div');
-  newTile.classList.add('tile');
-  tileContainer.appendChild(newTile);
+function Search(){
+  var search = document.getElementById("search").value;
+  window.open("https://www.google.com/search?q=" + search);
 }
-addButton.addEventListener('click', addTile);
 
 
 

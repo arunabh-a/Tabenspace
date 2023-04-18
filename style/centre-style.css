@@ -4,11 +4,14 @@ html {
 
 .navrow{
         height: 200px;
+        width: 100%;
         
 }
 
 .acc{
     display: inline;
+    font: EuclidCircularA;
+
 }
 
 .tile img {
@@ -31,7 +34,7 @@ html {
 .tile {
     box-sizing: border-box;
     display: inline-block;
-    width: 265px;
+    width: 290px;
     height: 200px;
     background: #F7F7F7;
     margin-left: 20px;
