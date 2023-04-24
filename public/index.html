@@ -1,205 +1,64 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>UI TabenSpace</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/style/centre-style.css">
+    <title>Your Control Centre - Tabenspace</title>
+</head>
+<body>
+    <div class="navrow">
+        <script>
+            function Search(){
+                var search = document.getElementById("search").value;
+                window.open("https://www.google.com/search?q=" + search);
+            }
+        </script>
+        <div class="form__group field">
+            <form action="" method="get" id="search-form">
+            <input type="search" name="querysearch" id="search" required="" placeholder="Name" class="form__field">            
+            <label class="form__label" for="name">Search Here</label>
+            <button hidden= "hidden" type="submit" onclick="Search();">Search</button>
+            </form>
+        </div>
 
-    <style>
-
-      .tile1 {
-        display: inline-block;
-        margin: 5px;
-        width: 205px;
-        height: 150px;
-        background: #f89696;
-        flex-direction: column;
-        position: relative;
-        top: 150px;
-        left: 25px;
-        align-items: center;
-        justify-content: center;
-        border-radius: 5%;
-        transition: 0.2s ease-in-out;
-      }
-
-      .popup{
-        width: 500px;
-        background: #fff;
-        border-radius: 6px;
-        position: absolute;
-        top: 0%;
-        left: 50%;
-        transform: translate(-50%,-50%) scale(0.1);
-        text-align: center;
-        visibility: hidden;
-        padding: 0 30px 30px;
-        color: #333;
-        transition: transform 0.4s, top 0.4s;
+        <div class="acc">
+            <a>Hey, Arunabh</a>
+            <img src="" alt="" class="pfp">
+        </div>
+    </div>
     
-      }
-
-      .open-popup{
-        visibility: visible;
-         top: 50%;
-         transform: translate (-50%,-50%) scale(1);
-      }
-
-      .popup img{
-        width: 100px;
-        margin-top: -50px;
-        border-radius: 50%;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      }
-
-      .popup h2{
-        font-size: 38px;
-        font-weight: 500;
-        margin: 30px 0 10px;
-      }
-      .popup button{
-        width: 100%;
-        margin-top: 50px;
-        padding: 10px 0;
-        background: #6fd649;
-        color: #fff;
-        border:0;
-        outline: none;
-        font-size: 18px;
-        border-radius: 4px;
-        cursor: pointer;
-        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-      }
-
-      .popup button:hover{
-        filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.2));
-        animation: anim 3s infinite;
-      }
-
-      .tile1:hover{
-        background-color: #e20000;
-        filter:blur(1px);
-        animation: anim 3s infinite;
-      }
-      
-      
-      .tile1:hover {
-        transform: scale(1.04) rotate(-2deg);
-      }
-      
-      .tile1:active{
-        transform: scale(0.95) rotateZ(1.7deg);
-      }
-
-      .group {
-        width: 200px;
-        height: 200px;
-        background-color: #e20000;
-      } 
-      
-      .search-tile {
-        background-color: #f9c0c0;
-        border: 1px solid #ccc;
-        padding: 10px;
-        border-radius: 5px;
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        width: 300px;
-        position: relative;
-        bottom: 169px;
-        right: 10px;
-
-      }
-
-      .search-tile input {
-        width: max-content;
-        visibility: inherit;
-        shape-margin: 0%;
-        background: #ccc;
-        border: medium;
-      }
-
-      .search-tile button{
-        width: 20%;
-        padding: 10px;
-        background: #ff4a4a;
-        color: #fff;
-        border:0;
-        outline: none;
-        font-size: 12px;
-        border-radius: 4px;
-        cursor: pointer;
-        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-      }
-
-      .acc-tile{
-        background-color: #f9c0c0;
-        border: 1px solid #ccc;
-        padding: 10px;
-        border-radius: 5px;
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        width: 300px;
-        position: relative;
-
-      }
-
-      
-
-    </style>
-  </head>
-
-  <body bgcolor="#FE8269" img src="C:\Users\BLUE JAGUAR\Downloads\Tablogo.png">
-    <div id="tile-container">
-        <div class="tile"></div>
-
-    <div class="tile1" onclick="openPopup">
-      <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.37 1277.39" clip-rule="evenodd" fill-rule="evenodd" image-rendering="optimizeQuality" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" version="1.1" height="100%" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" class="img">
-    </svg>
+<div class="tiles">
+    <a href="https://www.amazon.in/" class="tile">
+        <img src="/src/images/amazon-logo.png">
+        <label id="tilename">Amazon</label>
+    </a>
+    <a  href="https://www.flipkart.com/"class="tile">
+        <img src="/src/images/Flipkart-logo.png">
+        <label id="tilename">Flipkart</label>
+    </a>
+    <a  href="https://lpulive.lpu.in/"class="tile">
+        <img src="/src/images/LPU LIve.png">
+        <label id="tilename">LPU Live</label>
+    </a>
+    <a  href="https://ums.lpu.in/lpuums/"class="tile">
+        <img src="/src/images/LPU Logo.png">
+        <label id="tilename">LPU UMS</label>
+    </a>
+    <a  href="https://ums.lpu.in/lpuums/"class="tile">
+        <img src="/src/images/LPU Logo.png">
+        <label id="tilename">LPU UMS</label>
+    </a>
+    <a  href="https://ums.lpu.in/lpuums/"class="tile">
+        <img src="/src/images/LPU Logo.png">
+        <label id="tilename">LPU UMS</label>
+    </a>
+    <a  href="https://ums.lpu.in/lpuums/"class="tile">
+        <img src="/src/images/LPU Logo.png">
+        <label id="tilename">LPU UMS</label>
+    </a>
     </div>
-    </div>
-    <div class= "popup">
-      <img src= "C:\Users\BLUE JAGUAR\Downloads\tick.png">
-      <h2>Thank You! </h2>
-      <p>Your details has been successfully submitted. Thanks! </p>
-      <button type= "button" onclick="closePopup" id="add-tile" >Add Tile</button>
-   </div>
-
-   <div class="search-tile">
-    <form action="/search" method="get">
-      <label for="search">Search:</label>
-      <input type="search" id="search" name="q">
-      <button type="submit">Search</button>
-    </form>
-  </div>
-  
-  <script>
-
-const addButton = document.getElementById('add-tile');
-const tileContainer = document.getElementById('tile-container');
-function addTile() {
-  const newTile = document.createElement('div');
-  newTile.classList.add('tile1');
-  tileContainer.appendChild(newTile);
-}
-addButton.addEventListener('click', addTile);
-
-const popup=document.getElementById("tile1");
-      function openPopup(){
-        popup.classList.add("open-popup");
-      }
-      function closePopup(){
-        popup.classList.remove("open-popup");
-      }
-
-      
-const form = document.querySelector('form');
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-  const query = form.elements.q.value;
-  const url = `https://www.google.com/search?q=${query}`;
-  window.open(url, '_blank');
-});
-
-
-
-    </script>
-
-  </body>
+    <script type="text/javascipt" src="scripts/centre-tile.js"></script>
+</body>
 </html>
