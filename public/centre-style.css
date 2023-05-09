@@ -16,7 +16,7 @@ html {
 .tile img {
     width: 45%;
     position: fixed;
-    align-content: normal;
+    justify-content: normal;
     vertical-align: top;    
 
 }
@@ -27,6 +27,7 @@ html {
     bottom: 0;
     padding-bottom: 15px;
     top: 2;
+    justify-content: center;
     text-align: justify;
 } 
 
