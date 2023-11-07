@@ -10,7 +10,7 @@
 
 ## Idea
 - Our idea is to remake the application making it free for all to simplify and organize your websites, allowing you to be more productive, fast and organized. 
--With Tabenspace, you will be able to manage and organize your regularly used web apps and websites with just a few clicks.
+- With Tabenspace, you will be able to manage and organize your regularly used web apps and websites with just a few clicks.
 
 
 ## Design
