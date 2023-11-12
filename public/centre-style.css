@@ -174,9 +174,9 @@ nav{
     box-shadow: none;
 }
 
-@media only screen and (max-width: 780px) {
+@media screen and (min-width: 950px) and (max-width: 1500px){
     .tile {
-        width: 20rem
+        width: 19rem
 
     }
 }
