@@ -5,10 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="centre-style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&family=Gabarito:wght@700&family=Urbanist:wght@600&display=swap" rel="stylesheet">
     <title>Control Centre - Tabenspace</title>
 </head>
 <body>
-    <div class="navrow">
+    <nav>
         <script>
             function Search(){
                 var search = document.getElementById("search").value;
@@ -16,10 +20,9 @@
             }
         </script>
         <div class="form__group field">
-            <form action="" method="get" id="search-form">
+            <form action="https://www.google.com/search" method="get" target="_blank" id="search-form">
             <input type="search" name="querysearch" id="search" required="" placeholder="Name" class="form__field">            
-            <label class="form__label" for="name">Search Here</label>
-            <button hidden= "hidden" type="submit" onclick="Search();">Search</button>
+            <label class="form__label" for="name">Search Google</label>
             </form>
         </div>
 
@@ -27,78 +30,113 @@
             <a>Hey, Arunabh</a>
             <img src="" alt="" class="pfp">
         </div>
-    </div>
+
+    </nav>
     
 <div class="tiles">
     <a href="https://www.amazon.in/" class="tile">
-        <img src="src/images/amazon-logo.png">
+        <div class="icon-container">
+        <img src="src/images/amazon-logo.png" alt="Icon" style="max-width: 100%; max-height: 100%;">
+        </div>
         <label id="tilename">Amazon</label>
     </a>
     <a  href="https://www.flipkart.com/"class="tile">
-        <img src="src/images/Flipkart-logo.png">
+        <div class="icon-container">
+        <img src="src/images/Flipkart-logo.png" alt="Icon" style="max-width: 100%; max-height: 100%;">
+        </div>
         <label id="tilename">Flipkart</label>
     </a>
     <a  href="https://lpulive.lpu.in/"class="tile">
-        <img src="src/images/LPU LIve.png">
+        <div class="icon-container">
+        <img src="src/images/LPU LIve.png" alt="Icon" style="max-width: 100%; max-height: 100%;">
+        </div>
         <label id="tilename">LPU Live</label>
     </a>
     <a  href="https://ums.lpu.in/lpuums/"class="tile">
-        <img src="src/images/LPU Logo.png">
+        <div class="icon-container">
+        <img src="src/images/LPU Logo.png" alt="Icon" style="max-width: 100%; max-height: 100%;">
+        </div>
         <label id="tilename">LPU UMS</label>
     </a>
     <a  href="https://us.shop.battle.net/"class="tile">
-        <img src="src/images/Battle Net.png">
+        <div class="icon-container">
+        <img src="src/images/Battle Net.png" alt="Icon" style="max-width: 100%; max-height: 100%;">
+        </div>
         <label id="tilename">Battle Net</label>
     </a>
     <a  href="https://github.com/"class="tile">
-        <img src="src/images/Github.png">
+        <div class="icon-container">
+        <img src="src/images/Github.png" alt="Icon" style="max-width: 100%; max-height: 100%;">
+        </div>
         <label id="tilename">GitHub</label>
     </a>
     <a  href="https://www.hotstar.com/in/"class="tile">
-        <img src="src/images/Disney +.png">
+        <div class="icon-container">
+        <img src="src/images/Disney +.png" alt="Icon" style="max-width: 100%; max-height: 100%;">
+        </div>
         <label id="tilename">Disney +</label>
     </a>
     <a  href="https://store.epicgames.com/en-US/"class="tile">
-        <img src="src/images/Epic Games.png">
+        <div class="icon-container">
+        <img src="src/images/Epic Games.png" alt="Icon" style="max-width: 100%; max-height: 100%;">
+        </div>
         <label id="tilename">Epic Games</label>
     </a>
     <a  href="https://www.figma.com/"class="tile">
-        <img src="src/images/Figma.png">
+        <div class="icon-container">
+        <img src="src/images/Figma.png" alt="Icon" style="max-width: 100%; max-height: 100%;">
+        </div>  
         <label id="tilename">Figma</label>
     </a>
     <a  href="https://www.instagram.com/"class="tile">
-        <img src="src/images/Instagram.png">
+        <div class="icon-container">
+        <img src="src/images/Instagram.png" alt="Icon" style="max-width: 100%; max-height: 100%;">
+        </div>
         <label id="tilename">Instagram</label>
     </a>
     <a  href="https://www.linkedin.com/"class="tile">
-        <img src="src/images/LinkedIn.png">
+        <div class="icon-container">
+        <img src="src/images/LinkedIn.png" alt="Icon" style="max-width: 100%; max-height: 100%;">
+        </div>
         <label id="tilename">LinkedIn</label>
     </a>/
     <a  href="https://www.netflix.com/in/"class="tile">
-        <img src="src/images/Netflix.png">
+        <div class="icon-container">
+        <img src="src/images/Netflix.png" alt="Icon" style="max-width: 100%; max-height: 100%;">
+        </div>
         <label id="tilename">Netflix</label>
     </a>
     <a  href="https://www.notion.so/"class="tile">
-        <img src="src/images/Notion.png">
+        <div class="icon-container">
+        <img src="src/images/Notion.png" alt="Icon" style="max-width: 100%; max-height: 100%;">
+        </div>
         <label id="tilename">Notion</label>
     </a>
     <a  href="https://store.steampowered.com/"class="tile">
-        <img src="src/images/Steam.png">
+        <div class="icon-container">
+        <img src="src/images/Steam.png" alt="Icon" style="max-width: 100%; max-height: 100%;">
+        </div>
         <label id="tilename">Steam</label>
     </a>
     <a  href="https://telegram.org/"class="tile">
-        <img src="src/images/Telegram.png">
+        <div class="icon-container">
+        <img src="src/images/Telegram.png" alt="Icon" style="max-width: 100%; max-height: 100%;">
+        </div>
         <label id="tilename">Telegram</label>
     </a>
     <a  href="https://www.twitch.tv/"class="tile">
-        <img src="src/images/Twitch.png">
+        <div class="icon-container">
+        <img src="src/images/Twitch.png" alt="Icon" style="max-width: 100%; max-height: 100%;">
+        </div>
         <label id="tilename">Twitch</label>
     </a>
     <a  href="https://www.udemy.com/"class="tile">
-        <img src="src/images/Udemy.png">
+        <div class="icon-container">
+        <img src="src/images/Udemy.png" alt="Icon" style="max-width: 100%; max-height: 100%;">
+        </div>
         <label id="tilename">Udemy</label>
     </a>
     </div>
-    <script type="text/javascipt" src="scripts/centre-tile.js"></script>
+    
 </body>
 </html>

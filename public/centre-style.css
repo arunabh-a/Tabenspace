@@ -1,52 +1,68 @@
 html {
-    background: #FAFAFA;
+    background: #F7FBFC;
 }
 
-.navrow{
-        height: 200px;
-        width: 100%;
-        
+nav{
+    height: 200px;
+    width: 100%;
+    text-align: center;
 }
 
 .acc{
     display: inline;
-    font: Euclid Circular A;
+    font-family: 'Urbanist', sans-serif;
+    font-size: 35px;
+    font-weight: 900;
 }
 
 .tile img {
-    width: 45%;
-    position: fixed;
-    justify-content: normal;
-    vertical-align: top;    
+    width: 70%;
+    position: relative;
+    vertical-align: top;  
+    justify-content: center;
+    align-items: center; 
+    /* display: flex; */
+
 
 }
 
-.tile label{
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    position: absolute;
-    bottom: 0;
-    padding-bottom: 15px;
-    top: 2;
+.icon-container {
+    width: 160px;
+    height: 160px;
+    border-style: 1px solid #000;
+    display: flex;
     justify-content: center;
-    text-align: justify;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.tile label{
+    font-family: 'Gabarito', sans-serif;
+    padding-bottom: 15px;
+    color: #000;  
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 } 
 
 .tile {
-    box-sizing: border-box;
     display: inline-block;
-    width: 290px;
-    height: 200px;
-    background: #F7F7F7;
-    margin-left: 20px;
+    width: 20rem;
+    height: 14rem;
+    background:  #DDE6ED;
+    
     border: 1.2px solid #929AAB;
     box-shadow: 0px 5px 20px #929AAB;
+    
     backdrop-filter: blur(6px);
-    border-radius: 17px;
-    text-align: relative;
+    border-radius: 20px;
+    text-align: center;
     cursor: pointer;
-    margin-bottom: 10px;
+    
+    margin: 10px;
     transition: all 0.5s;
-    /* align-items: relative; */
+    text-decoration: none;
     user-select: none;
     font-weight: bolder;
 }
@@ -58,6 +74,7 @@ html {
 
 .tile:active {
     transform: scale(0.95) rotateZ(1.7deg);
+    
 }
 
 .form__group {
@@ -125,11 +142,4 @@ html {
 
 .form__field:required, .form__field:invalid {
     box-shadow: none;
-}
-
-.acc{
-    background: #134ce9;
-    float: left;
-    margin: 2%;
-    align-content: end;
 }
