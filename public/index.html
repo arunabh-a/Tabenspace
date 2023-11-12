@@ -13,22 +13,20 @@
 </head>
 <body>
     <nav>
-        <script>
-            function Search(){
-                var search = document.getElementById("search").value;
-                window.open("https://www.google.com/search?q=" + search);
-            }
-        </script>
+        <script src="search-script.js"></script>
+
         <div class="form__group field">
             <form action="https://www.google.com/search" method="get" target="_blank" id="search-form">
-            <input type="search" name="querysearch" id="search" required="" placeholder="Name" class="form__field">            
+            <input type="search" name="querysearch" id="search" placeholder="Name" class="form__field" onkeydown="searchOnEnter(event)">            
             <label class="form__label" for="name">Search Google</label>
             </form>
         </div>
 
-        <div class="acc">
+        <div class="profile-section">
             <a>Hey, Arunabh</a>
-            <img src="" alt="" class="pfp">
+            <div id="profile-container">
+                <img src="src/gameme.png" alt="" class="pfp">
+            </div>
         </div>
 
     </nav>

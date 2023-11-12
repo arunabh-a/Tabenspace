@@ -5,14 +5,32 @@ html {
 nav{
     height: 200px;
     width: 100%;
-    text-align: center;
+    text-align: end;
 }
 
-.acc{
-    display: inline;
+.profile-section{
     font-family: 'Urbanist', sans-serif;
-    font-size: 35px;
+    font-size: 25px;
     font-weight: 900;
+    display: flex;
+    width: 259px;
+    height: 74px;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    flex-shrink: 0;
+}
+
+#profile-container {
+    background-color: #289BDB;
+    width: 20%;
+    height: 65%;
+    border-radius: 50%;
+}
+
+#profile-container img {
+    width: 100%;
+    border-radius: inherit;
 }
 
 .tile img {
@@ -27,6 +45,10 @@ nav{
 }
 
 .icon-container {
+    position: relative;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -55%);
     width: 160px;
     height: 160px;
     border-style: 1px solid #000;
@@ -48,7 +70,7 @@ nav{
 
 .tile {
     display: inline-block;
-    width: 20rem;
+    width: 19rem;
     height: 14rem;
     background:  #DDE6ED;
     
@@ -82,7 +104,6 @@ nav{
     padding: 20px 0 0;
     margin-top: 10px;
     float: left;
-    display: inline;
     width: 100%;
     max-width: 180px;
 }
@@ -125,7 +146,7 @@ nav{
     padding-bottom: 6px;
     font-weight: 70;
     border-width: 3px;
-    border-image: linear-gradient(to right, #6641f4, #6641f4);
+    border-color: #000;
     border-image-slice: 1;
 }
 
@@ -136,7 +157,7 @@ nav{
     font-family: Arial, Helvetica, sans-serif;
     transition: 0.2s;
     font-size: 17px;
-    color: #134ce9;
+    color: #000;
     font-weight: 700;
 }
 
