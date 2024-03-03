@@ -1,0 +1,52 @@
+@layer base {
+    @font-face {
+        font-family: EC-Bold;   
+        font-weight: bold;
+        font-display: fallback;
+        src: local("Euclid-Circular-A") ,url("../fonts/Euclid\ Circular\ A\ Bold.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: EC-Regular;   
+        src: url("../fonts/Euclid\ Circular\ A\ Regular.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: EC-Italic;   
+        src: url("../fonts/Euclid\ Circular\ A\ Italic.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: EC-Light;   
+        src: url("../fonts/Euclid\ Circular\ A\ Light.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: EC-Medium;   
+        src: url("../fonts/Euclid\ Circular\ A\ Medium.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: EC-SemiBold;   
+        src: url("../fonts/Euclid\ Circular\ A\ SemiBold.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: Gabarito-Black;   
+        src: url("../fonts/Gabarito-Black.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: Gabarito-Bold;   
+        src: url("../fonts/Gabarito-Bold.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: Gabarito-ExtraBold;   
+        src: url("../fonts/Gabarito-ExtraBold.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: Gabarito-Medium;   
+        src: url("../fonts/Gabarito-Medium.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: Gabarito-Regular;   
+        src: url("../fonts/Gabarito-Regular.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: Gabarito-SemiBold;   
+        src: url("../fonts/Gabarito-SemiBold.ttf") format("truetype");
+    }
+}
