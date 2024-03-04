@@ -7,7 +7,7 @@ import { app } from '../firebaseConfig';
 const Nav = () => {
 
     const [imageUrl, setImageUrl] = useState(null);
-    const [searchTerm, setSearchTerm] = useState(null);
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
         const fetchImage = async () => {
@@ -43,7 +43,7 @@ const Nav = () => {
 
             <div className="profile-section">
                 <div id="profile-container">
-                    {imageUrl && <img src={imageUrl} alt="" className="pfp" />}
+                    {imageUrl && <img src={imageUrl} className="pfp" />}
                 </div>
                 <a>Hey, Arunabh</a>
             </div>

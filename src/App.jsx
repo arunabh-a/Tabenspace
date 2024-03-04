@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { getDatabase, ref, onValue } from "firebase/database";
-import { getStorage, getDownloadURL } from 'firebase/storage';
 import { app } from './firebaseConfig'
 import './App.css'
 import Tile from './components/tile'

@@ -1,0 +1,160 @@
+/* * {
+    border: solid 1px red;
+} */
+
+.t-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+
+.tile-edit {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 35rem;
+    height: 40rem;
+    background-color: #F7FBFC;
+    border-radius: 100px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.icon-canvas {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    aspect-ratio: 1/1;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+    background-color: #111a2d ;
+    border-radius: 50%;
+    margin: 20px;
+    overflow: hidden;
+
+}
+
+.icon-canvas img {
+    /* background-color: aqua; */
+
+    width: 80%;
+    height: 80%;
+    cursor: pointer;
+    /* visibility: hidden; */
+}
+
+#file-input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+.icon-change {
+    
+    text-decoration: none;
+    color: #000;
+    font-size: 32px;
+    cursor: pointer;
+    font-family: EC-Bold;
+    margin-bottom: 80px;
+
+}
+
+.icon-change:hover {
+    color: #064996;
+}
+
+.tile-fields {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.tile-fields input {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    background: #E3EAEF;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    font-size: 16px;
+    font-family: EC-Bold;
+    font-size: x-large;
+}
+
+.tile-fields input::placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: EC-Bold;
+    text-align: center;
+    color: #000;
+    font-size: 40px;
+}
+
+
+.tile-buttons {
+    position: absolute;
+    right: 50px;
+    bottom: 60px;
+    display: flex;
+    width: max-content;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.tile-buttons button {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 14px;
+    /* font-size: 1.7rem; */
+    width: 120px;
+    font-family: Gabarito-Bold;
+    font-size: x-large;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tile-buttons button:hover {
+    transform: scale(1.1);
+}
+
+.tile-buttons button:active {
+    transform: scale(0.95);
+}
+
+.save {
+    background-color: #111a2d;
+    color: #fff;
+}
+
+.cancel {
+    background-color: #dde6ed;
+    color: #000;
+
+}
