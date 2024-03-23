@@ -1,13 +1,17 @@
 const logregBox = document.querySelector('.logreg-box');
 
-const loginLink = document.querySelector('.login-link');
+
+
+const formBoxLogin = document.querySelector('.form-box.login');
 
 const registerLink = document.querySelector('.register-link');
-
+const loginLink = document.querySelector('.login-link');
 
 
 registerLink.addEventListener('click', () => {
     logregBox.classList.add('active');
+    
+
 });
 
 

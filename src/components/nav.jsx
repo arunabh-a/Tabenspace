@@ -30,6 +30,8 @@ const Nav = () => {
     return (
         <nav>
             <form onSubmit={handleSubmit} className="search-control">
+            
+
                 <input 
                 type="search" 
                 id="search" 

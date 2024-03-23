@@ -28,3 +28,23 @@
 Tabenspace is a Web Information Manager used to organize your daily viewed and visited websites
 
 It will replace your regular looking browser home page into a productive and practical organizer for weebsites
+
+## Environment Variables
+
+### Input your firebase configuration in a .env file in the root directory of the project
+
+```env
+    VITE_API_KEY  =  (your firebase api key)
+
+    VITE_AUTH_DOMAIN  =  (your firebase auth domain)
+
+    VITE_DATABASE_URL  = (the url of your firebase database)
+
+    VITE_PROJECT_ID  =  (the project id of your firebase project)
+
+    VITE_STORAGE_BUCKET  =  (your firebase storage bucket)
+
+    VITE_APP_ID  = (the app id of your firebase project)
+
+    VITE_MEASUREMENT_ID  = (the measurement id of your firebase project)
+```

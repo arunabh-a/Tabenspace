@@ -10,36 +10,46 @@
     <title>Login Page</title>
 </head>
 
-<body>
+<body>   
 
-    <header class="header">
-        <nav class="navbar">
-        </nav>
+    <div class="background">
+        <canvas id="canvas">Your browser doesn't support canvas</canvas>
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <defs>
+                <filter id="shadowed-goo">
+                    
+                    <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+                    <feGaussianBlur in="goo" stdDeviation="3" result="shadow" />
+                    <feColorMatrix in="shadow" mode="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 -0.2" result="shadow" />
+                    <feOffset in="shadow" dx="1" dy="1" result="shadow" />
+                    <feBlend in2="shadow" in="goo" result="goo" />
+                    <feBlend in2="goo" in="SourceGraphic" result="mix" />
+                </filter>
+                <filter id="goo">
+                    <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+                    <feBlend in2="goo" in="SourceGraphic" result="mix" />
+                </filter>
+            </defs>
+        </svg>
+        <script src="background.js"></script>
+    </div>
 
-        <!-- <form action="/search" method="get" class="search-bar">
-            <input type="text" placeholder="Search...">
-            <button type="submit"><i class='bx bx-search'></i></button>
-        </form> -->
-    </header>   
-
-    <div class="background"></div>
     <div class="container">
         <div class="content">
             <h2 class="logo">TabenSpace</h2>
 
             <div class="text-sci">
-                <h2>Hello There! <br>   </h2>
+                <h2>Welcome to TabenSpace<br>  Sign In to Access your Account </h2>
+                <h3>Check our Socials</h3>
 
-                <p> Whether it be their regular visited applications or their point of interest in the web, people often have their data cluttered and it results in inefficient productivity experience defined by countless tabs and constant multi-tasking.
-                    With Tabenspace, you will be able to manage and organize your regularly used web apps and websites with just a few clicks. If you are ready then 
-                    LOG-SET-GO
-                </p>
-
-                 <!-- <div class="social-icons">
-                        <a href="https://www.linkedin.com/in/arunabhatt"><i class='bx bxl-linkedin'></i></a>
-                        <a href="#"><i class='bx bxl-instagram' ></i></a>
-                        <a href="#"><i class='bx bxl-twitter' ></i></a>
-                 </div>    -->
+                    <div class="social-icons">
+                        
+                            <a href="https://www.linkedin.com/in/arunabhaa"><i class='bx bxl-linkedin'></i></a>
+                            <a href="#"><i class='bx bxl-instagram' ></i></a>
+                            <a href="#"><i class='bx bxl-twitter' ></i></a>
+                    </div>   
             </div>
         </div>
 
@@ -65,7 +75,9 @@
                         <a href="#">Forgot password?</a>
                     </div>
 
-                    <button type="submit" class="btn">Sign In</button>
+                    <div class="btn-container">
+                        <button type="submit" class="btn">SUBMIT</button>
+                    </div>
 
                     <div class="login-register">
                         <p>Don't have an account? <a href="#" class="register-link">Sign up</a></p>
@@ -100,7 +112,9 @@
                         <label><input type="checkbox" required>I agree to the terms & conditions</label>                      
                     </div>
 
-                    <button type="submit" class="btn">Sign up</button>
+                    <div class="btn-container">
+                        <button type="submit" class="btn">SUBMIT</button>
+                    </div>
 
                     <div class="login-register">
                         <p>Already have an account? <a href="#" class="login-link">Sign in</a></p>
@@ -114,7 +128,7 @@
 
 
 
-    <script src="./script.js"></script>
+    <script src="./loginscript.js"></script>
 </body>
 
 </html>
