@@ -1,6 +1,6 @@
-
-import Dash from './pages/dash';
-import Login from './pages/login';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Dash from './pages/Dashboard/dash';
+import Login from './pages/Login/login';
 
 
 function App() {
@@ -10,8 +10,14 @@ function App() {
 
     return (
         <div className="App">
-            {/* <Dash /> */}
-            <Login />
+            <Router>
+                <Routes>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/dashboard" element={<Dash />} />
+                    {/* Redirect to login by default */}
+                    <Route path="/" element={<Login />} />
+                </Routes>
+            </Router>
 
         </div>
     )

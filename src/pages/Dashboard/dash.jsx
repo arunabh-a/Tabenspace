@@ -1,14 +1,27 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { getDatabase, ref, onValue } from "firebase/database";
-import { app } from '../firebaseConfig'
-import '../App.css'
-import Tile from '../components/tile'
-import Nav from '../components/nav'
-import AddTile from '../components/addTile'
+import { app } from '../../firebaseConfig'
+import './dash-style.css'
+// import '../index.css'
+import Tile from '../../components/tile'
+import Nav from '../../components/nav'
+import AddTile from '../../components/addTile'
 
 const Dash = () => {
     const [tiles, setTiles] = useState([]);
+
+    useEffect(() => {
+        // Set styles when component mounts
+        document.body.style.backgroundColor = '#F7FBFC';
+        // Other styles...
+    
+        // Revert styles when component unmounts
+        return () => {
+            document.body.style.backgroundColor = '';
+          // Reset other styles...
+        };
+      }, []);
 
     useEffect(() => {
         const db = getDatabase(app);

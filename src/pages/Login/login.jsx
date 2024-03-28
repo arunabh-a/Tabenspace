@@ -1,13 +1,37 @@
-import React, {useState} from 'react'
-import './assets/loginstyle.css'
-import './assets/background.js'
+import React, { useState, useEffect } from 'react'
+import './loginstyle.css'
+import './background.js'
 import { getDatabase, ref, onValue, set } from "firebase/database";
-import { app } from '../firebaseConfig'
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { app } from '../../firebaseConfig.js'
 import toast, { Toaster } from 'react-hot-toast';
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification,signInWithEmailAndPassword,  signInWithPopup} from "firebase/auth";
+import { googleProvider } from '../../firebaseConfig.js';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const Login = () => {
+
+    useEffect(() => {
+        // Set styles when component mounts
+        document.body.style.margin = '0';
+        document.body.style.padding = '0';
+        document.body.style.boxSizing = 'border-box';
+        document.body.style.backgroundColor = 'black';
+        document.body.style.overflow = 'hidden';
+        // Other styles...
+    
+        // Revert styles when component unmounts
+        return () => {
+            document.body.style.backgroundColor = '';
+            document.body.style.overflow = '';
+
+        };
+    }, []);
+
+
+
+    const navigate = useNavigate();
     const [isActive, setIsActive] = useState(false);
     const [loginData, setLoginData] = useState({ email: '', password: '' });
     const [registerData, setRegisterData] = useState({ name: '',email: '', password: '', confirmPassword: ''});
@@ -105,6 +129,9 @@ const Login = () => {
             .then((userCredential) => {
             // Signed in 
                 toast.success('Logged in successfully');
+                setTimeout(() => {
+                handleSignInSuccess();
+                }, 2000);
                 const user = userCredential.user;
                 console.log(user);
             // ...
@@ -117,85 +144,86 @@ const Login = () => {
         }
     };
     
+
+    const handleSignInSuccess = () => {
+        navigate('/dashboard');
+    }
+
+    const addUserInDatabase = (user, name, email) => {
+        set(ref(db, 'Users/' + user.uid), {
+            name: name,
+            email: email,
+            tiles: {} // Initialize 'tiles' as an empty object
+        });
+    };
+    
     const handleRegisterSubmit = (e) => {
         e.preventDefault();
         if (validateRegister()) {
             const name = registerData.name;
             const email = registerData.email;
             const password = registerData.password;
+            
+            toast('Registering...');
 
-
-            Promise.resolve()
-            .then(() => {
-              toast('Registering...');
-              return createUserWithEmailAndPassword(auth, email, password);
-            })
-            .then((userCredential) => {
-              // Signed in
-              toast.success('Created and Authenticated User');
-              const user = userCredential.user;
-              // console.log(user);
-              return set(ref(db, 'Users/' + user.uid), {
-                name: name,
-                email: email,
-                tiles: '{}' // Initialize 'tiles' as an empty object
-              });
-            })
-            .then(() => {
-              // Data saved successfully
-              toast.success('User has been registered successfully!');
-            })
-            .catch((error) => {
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                // Signed in
+                toast.success('Created and Authenticated User');
+                const user = userCredential.user;
+                // Add user to the database
+                addUserInDatabase(user, name, email);
+                return user; // Return the user for the next then block
+                })
+                .then((user) => {
+                // User added to the database successfully
+                toast.success('User has been registered successfully!');
+                // Navigate to the Dash component or perform other actions
+                })
+                .catch((error) => {
               // Handle errors here
-              const errorCode = error.code;
-              const errorMessage = error.message;
-              if (errorCode === 'auth/email-already-in-use') {
-                toast.error('Email already in use. Please try another email.');
-              } else {
-                toast.error(errorMessage);
-              }
-              setErrors({ ...errors, register: errorMessage });
-            });
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                if (errorCode === 'auth/email-already-in-use') {
+                    toast.error('Email already in use. Please try another email.');
+                } else {
+                    toast.error(errorMessage);
+                }
+              // Assuming `setErrors` is a function to update the local state with errors
+                setErrors((prevErrors) => ({ ...prevErrors, register: errorMessage }));
+                });
         }
-      };
+    };
 
-    //         createUserWithEmailAndPassword(auth, email, password)
-    //         .then((userCredential) => {
-    //             // Signed in 
-                
-    //             const user = userCredential.user;
-    //             toast.success('User Authenticated');
-    //             // console.log(user);
-
-    //             set(ref(db, 'Users/' + user.uid), {
-    //                 name: name,
-    //                 email: email,
-    //                 tiles: '{}' // Initialize 'tiles' as an empty object
-    //             }).then(() => {
-    //                 // Data saved successfully
-    //                     toast.success('User has been Registered Successfully!');
-    //             }).catch((error) => {
-    //                 // Handle errors here
-    //                     console.error('Error saving user data:', error);
-    //             });
-
-
-    //         })
-    //         .catch((error) => {
-    //             const errorCode = error.code;
-    //             const errorMessage = error.message;
-    //             toast.error('Error creating user:', errorCode, errorMessage);
-    //             setErrors({ ...errors, register: errorMessage });
-    //         });
-    //     }
-    // };
-
+    const handleGoogleSignIn = () => {
+        signInWithPopup(auth, googleProvider)
+        .then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            // The signed-in user info.
+            const user = result.user;
+            toast.success('Logged in successfully');
+            handleSignInSuccess();
+            console.log(user);
+            // ...
+        }).catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            // ...
+        });
+    }
 
 
 
 
     return (
-        <div>
+        <div className='login-style'>
             <div className="background">
             <canvas id="canvas">Your browser doesn't support canvas</canvas>
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -237,7 +265,7 @@ const Login = () => {
 
                     // Default options for specific types
                     success: {
-                        duration: 3000,
+                        duration: 5000,
                         theme: {
                             primary: 'green',
                             secondary: 'black',
@@ -246,16 +274,22 @@ const Login = () => {
                 }}
             />
             
-            <div className="container">
+            <div className='container'>
                 <div className="content">
                     <h2 className="logo">TabenSpace</h2>
                     <div className="text-sci">
                         <h2>Welcome to TabenSpace <br />  Sign In to Access your Account </h2>
                         <h3>Check our Socials</h3>
                         <div className="social-icons">
-                            <a href="https://www.linkedin.com/in/arunabhaa"><i className='bx bxl-linkedin'></i></a>
-                            <a href="#"><i className='bx bxl-instagram'></i></a>
-                            <a href="#"><i className='bx bxl-twitter'></i></a>
+                            <a href="https://www.linkedin.com/in/arunabhaa">
+                            <svg xmlns='http://www.w3.org/2000/svg' width='40px' height='40px' viewBox="0 0 24 24"><title>social_x_line</title><g id="social_x_line" fill='none' fill-rule='evenodd'><path d='M24 0v24H0V0h24ZM12.594 23.258l-.012.002-.071.035-.02.004-.014-.004-.071-.036c-.01-.003-.019 0-.024.006l-.004.01-.017.428.005.02.01.013.104.074.015.004.012-.004.104-.074.012-.016.004-.017-.017-.427c-.002-.01-.009-.017-.016-.018Zm.264-.113-.014.002-.184.093-.01.01-.003.011.018.43.005.012.008.008.201.092c.012.004.023 0 .029-.008l.004-.014-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014-.034.614c0 .012.007.02.017.024l.015-.002.201-.093.01-.008.003-.011.018-.43-.003-.012-.01-.01-.184-.092Z'/><path fill='#FFFFFFFF' d='M19.753 4.659a1 1 0 0 0-1.506-1.317l-5.11 5.84L8.8 3.4A1 1 0 0 0 8 3H4a1 1 0 0 0-.8 1.6l6.437 8.582-5.39 6.16a1 1 0 0 0 1.506 1.317l5.11-5.841L15.2 20.6a1 1 0 0 0 .8.4h4a1 1 0 0 0 .8-1.6l-6.437-8.582 5.39-6.16ZM16.5 19 6 5h1.5L18 19h-1.5Z'/></g></svg>
+                            </a>
+                            <a href="#">
+                            <svg xmlns='http://www.w3.org/2000/svg' width='40px' height='40px' viewBox="0 0 24 24"><title>ins_line</title><g id="ins_line" fill='none' fill-rule='evenodd'><path d='M24 0v24H0V0h24ZM12.593 23.258l-.011.002-.071.035-.02.004-.014-.004-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01-.017.428.005.02.01.013.104.074.015.004.012-.004.104-.074.012-.016.004-.017-.017-.427c-.002-.01-.009-.017-.017-.018Zm.265-.113-.013.002-.185.093-.01.01-.003.011.018.43.005.012.008.007.201.093c.012.004.023 0 .029-.008l.004-.014-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014-.034.614c0 .012.007.02.017.024l.015-.002.201-.093.01-.008.004-.011.017-.43-.003-.012-.01-.01-.184-.092Z'/><path fill='#FFFFFFFF' d='M16 3a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5h8Zm0 2H8a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3Zm-4 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm4.5-3.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z'/></g></svg>
+                            </a>
+                            <a href="#">
+                            <svg xmlns='http://www.w3.org/2000/svg' width='40px' height='40px' viewBox="0 0 24 24"><title>linkedin_fill</title><g id="linkedin_fill" fill='none' fill-rule='evenodd'><path d='M24 0v24H0V0h24ZM12.593 23.258l-.011.002-.071.035-.02.004-.014-.004-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01-.017.428.005.02.01.013.104.074.015.004.012-.004.104-.074.012-.016.004-.017-.017-.427c-.002-.01-.009-.017-.017-.018Zm.265-.113-.013.002-.185.093-.01.01-.003.011.018.43.005.012.008.007.201.093c.012.004.023 0 .029-.008l.004-.014-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014-.034.614c0 .012.007.02.017.024l.015-.002.201-.093.01-.008.004-.011.017-.43-.003-.012-.01-.01-.184-.092Z'/><path fill='#FFFFFFFF' d='M18 3a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12ZM8 10a1 1 0 0 0-1 1v5a1 1 0 1 0 2 0v-5a1 1 0 0 0-1-1Zm3-1a1 1 0 0 0-1 1v6a1 1 0 1 0 2 0v-3.66c.305-.344.82-.748 1.393-.993.333-.142.834-.2 1.182-.09.152.048.24.116.293.188.052.07.132.226.132.555v4a1 1 0 0 0 2 0v-4c0-.67-.17-1.266-.524-1.744a2.54 2.54 0 0 0-1.301-.907c-.902-.283-1.901-.126-2.568.16a5.82 5.82 0 0 0-.623.312A1 1 0 0 0 11 9ZM8 7a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z'/></g></svg>
+                            </a>
                         </div>  
                     </div>
                 </div>
@@ -314,7 +348,8 @@ const Login = () => {
                                 </p>
                             </div>
                             <div className="gsi-button">
-                                    <button className="gsi-material-button">
+                                    <button className="gsi-material-button"
+                                    onClick={handleGoogleSignIn}>
                                     <div className="gsi-material-button-state" />
                                     <div className="gsi-material-button-content-wrapper">
                                         <span className="gsi-material-button-contents"> Sign in using </span>
