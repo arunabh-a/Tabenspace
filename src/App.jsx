@@ -12,10 +12,10 @@ function App() {
         <div className="App">
             <Router>
                 <Routes>
-                    <Route path="/login" element={<Login />} />
+                    <Route path="/auth" element={<Login />} />
                     <Route path="/dashboard" element={<Dash />} />
                     {/* Redirect to login by default */}
-                    <Route path="/" element={<Login />} />
+                    <Route path="/" element={<Dash />} />
                 </Routes>
             </Router>
 

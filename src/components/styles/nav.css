@@ -65,6 +65,7 @@ nav{
     flex-shrink: 0;
     border-radius: 50px;
     background-color: transparent;
+    margin: 0px 10px 0px 0px;
     /* box-shadow: 0px 5px 20px #929aab; */
     /* backdrop-filter: blur(6px);  */
     border: solid 1.2px #929aab;

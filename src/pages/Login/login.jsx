@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import './loginstyle.css'
 import './background.js'
-import { getDatabase, ref, onValue, set } from "firebase/database";
+import { getDatabase, ref, onValue, set, get } from "firebase/database";
 import { app } from '../../firebaseConfig.js'
 import toast, { Toaster } from 'react-hot-toast';
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification,signInWithEmailAndPassword,  signInWithPopup} from "firebase/auth";
-import { googleProvider } from '../../firebaseConfig.js';
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification,signInWithEmailAndPassword,  signInWithRedirect, getRedirectResult ,
+GoogleAuthProvider} from "firebase/auth";
+import { googleProvider, auth, db } from '../../firebaseConfig.js';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -38,7 +39,7 @@ const Login = () => {
     const [errors, setErrors] = useState
     ({});
 
-    const db = getDatabase(app);
+    
 
     const handleSignUpClick = (e) => {
         e.preventDefault();
@@ -115,7 +116,6 @@ const Login = () => {
     };
     
 
-    const auth = getAuth();
 
     const handleLoginSubmit = (e) => {
 
@@ -150,11 +150,24 @@ const Login = () => {
     }
 
     const addUserInDatabase = (user, name, email) => {
-        set(ref(db, 'Users/' + user.uid), {
-            name: name,
-            email: email,
-            tiles: {} // Initialize 'tiles' as an empty object
-        });
+        if (user && user.uid) {
+
+            set(ref(db, 'Users/' + user.uid), {
+                Name: name,
+                email: email,
+                Tiles: {} // Initialize 'tiles' as an empty object
+            })
+            .then(() => {
+                console.log('User added/updated in database');
+            })
+            .catch((error) => {
+                toast.error('Error adding user to database:', error);
+            });
+
+            
+        } else {
+            toast.error('User is not defined or authenticated');
+        }
     };
     
     const handleRegisterSubmit = (e) => {
@@ -196,28 +209,40 @@ const Login = () => {
     };
 
     const handleGoogleSignIn = () => {
-        signInWithPopup(auth, googleProvider)
-        .then((result) => {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
-            // The signed-in user info.
-            const user = result.user;
-            toast.success('Logged in successfully');
-            handleSignInSuccess();
-            console.log(user);
-            // ...
-        }).catch((error) => {
+        signInWithRedirect(auth, googleProvider); // This initiates the sign-in flow
+    };
+        useEffect(() => {
+            getRedirectResult(auth)
+            .then((result) => {
+                if (result) {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                    const credential = GoogleAuthProvider.credentialFromResult(result);
+                    const token = credential.accessToken;
+                
+                    const user = result.user;
+                    
+                    toast.success('Logged in successfully');
+                    console.log(user.displayName);
+                    addUserInDatabase(user, user.displayName, user.email);
+                    setTimeout(() => {
+                        handleSignInSuccess();
+                        }, 
+                    2000);
+                }
+            })
+            .catch((error) => {
             // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // The email of the user's account used.
-            const email = error.email;
-            // The AuthCredential type that was used.
-            const credential = GoogleAuthProvider.credentialFromError(error);
-            // ...
-        });
-    }
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                // ...
+            });
+        }, [auth]);
+
+        
 
 
 

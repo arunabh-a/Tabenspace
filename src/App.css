@@ -6,3 +6,38 @@
     border: solid 1px red;
 } */
 
+*::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+  }
+  *::-webkit-scrollbar-track {
+    border-radius: 20px;
+    background-color: #DFE9EB;
+  }
+  
+  *::-webkit-scrollbar-track:hover {
+    background-color: #DFE9EB;
+  }
+  
+  *::-webkit-scrollbar-track:active {
+    background-color: #B8C0C2;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background-color: #7292A4;
+  }
+  
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: #7B92A4;
+  }
+  
+  *::-webkit-scrollbar-thumb:active {
+    background-color: #707579;
+  }
+
+input :focus {
+    outline: none;
+    border: none;
+}
+

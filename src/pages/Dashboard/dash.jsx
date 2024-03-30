@@ -3,10 +3,12 @@ import { useState, useEffect } from 'react'
 import { getDatabase, ref, onValue } from "firebase/database";
 import { app } from '../../firebaseConfig'
 import './dash-style.css'
-// import '../index.css'
+import '/src/index.css'
+import '/src/App.css'
 import Tile from '../../components/tile'
 import Nav from '../../components/nav'
 import AddTile from '../../components/addTile'
+// import { tileRef } from '../Login/login';
 
 const Dash = () => {
     const [tiles, setTiles] = useState([]);
@@ -25,7 +27,8 @@ const Dash = () => {
 
     useEffect(() => {
         const db = getDatabase(app);
-        const tileRef = ref(db, 'Tiles/');
+        const tileRef = ref(db, 'Tiles');
+        // const tileRef = ref(db, 'Users/' + user.uid + '/Tiles');
     
         onValue(tileRef, (snapshot) => {
             if (snapshot.exists()) {
