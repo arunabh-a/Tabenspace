@@ -6,11 +6,16 @@ const AddTile = () => {
     const [showModal, setShowModal] = useState(false)
 
     const handleOpenModal = () => {
-        setShowModal(true)
+        setShowModal(true);
+        document.body.classList.add('modal-active');
     }
 
     const handleCloseModal = () => {
-        setShowModal(false)
+        document.getElementById('modal-container').classList.add('out'); // Add class for closing animation
+        document.body.classList.remove('modal-active');
+        setTimeout(() => {
+            setShowModal(false);
+        }, 300);
     }
 
     return (

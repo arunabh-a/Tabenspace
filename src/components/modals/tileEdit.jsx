@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './styles/tileEdit.css'
+
 import { getDatabase, ref as dbref, get, set, child } from "firebase/database";
 import { getStorage, ref as storageref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { app } from '../../firebaseConfig';
@@ -64,14 +65,14 @@ const TileEdit = ({ onClose }) => {
     
 
     return (
-        <div className='t-backdrop'>
+        <div id='modal-container' className='t-backdrop'>
             <form className="tile-edit" onSubmit={handleSave}>
                 <div className="icon-canvas">
                     <img src={iconURL} alt='' />
                 <input id='file-input' type="file" onChange={handleIconChange} />
                 </div>
 
-                <label className="icon-change">Change Icon</label>
+                <label className="icon-change" >Change Icon</label>
                 <div className="tile-fields">
                     <input type="text" name="title" id="tile" placeholder="Tile Title" />
                     <input type="text" name="website-URL" id="website-URL" placeholder="Site Link" />

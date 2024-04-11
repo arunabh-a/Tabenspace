@@ -2,6 +2,28 @@
     border: solid 1px red;
 } */
 
+@keyframes modalContentFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes modalContentFadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
 .t-backdrop {
     position: fixed;
     top: 0;
@@ -13,7 +35,21 @@
     justify-content: center;
     align-items: center;
     z-index: 9999;
+    animation: modalFadeOut 0.5s forwards;
 }
+
+.t-backdrop.out {
+    animation: modalFadeOut 0.5s forwards;
+  }
+  
+  .tile-edit {
+    /* ... existing styles */
+    animation: modalContentFadeIn 0.5s forwards;
+  }
+  
+  .tile-edit.out {
+    animation: modalContentFadeOut 0.5s forwards;
+  }
 
 
 .tile-edit {
@@ -27,8 +63,17 @@
     background-color: #F7FBFC;
     border-radius: 100px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
 }
 
+.tile-edit.modalContentFadeIn {
+    animation-name: modalContentFadeIn;
+}
+
+.tile-edit.modalContentFadeOut {
+    animation-name: modalContentFadeOut;
+}
 
 .icon-canvas {
     position: relative;
@@ -44,16 +89,18 @@
     border-radius: 50%;
     margin: 20px;
     overflow: hidden;
+    border: none;
 
 }
 
 .icon-canvas img {
-    /* background-color: aqua; */
-
-    width: 80%;
-    height: 80%;
+    border-radius: 50%;
+    width: 85%;
+    height: 85%;
     cursor: pointer;
     /* visibility: hidden; */
+
+    aspect-ratio: 1/1;
 }
 
 #file-input {
@@ -158,3 +205,5 @@
     color: #000;
 
 }
+
+
