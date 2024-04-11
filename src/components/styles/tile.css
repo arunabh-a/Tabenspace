@@ -41,9 +41,10 @@
     display: inline;
     width: 20rem;
     height: 14rem;
-    background:  #DDE6ED;
+    /* background:  #DDE6ED; */
+    background-color: #f9fdff;
     border: 1.2px solid #929AAB;
-    box-shadow: 0px 5px 20px #929AAB;
+    box-shadow: 0px 5px 10px #DDE6ED;
     
     backdrop-filter: blur(6px);
     border-radius: 1.5rem;
@@ -67,9 +68,14 @@
     right: 1rem;
     background-color: transparent;
     border: none;
+    transition: ease 0.5s;
 }
 
 .more img {
     width: 40px;
-    border: none;
+    border: none;   
+}
+
+.more img:hover {
+    transform: scale(1.1);
 }

@@ -27,7 +27,7 @@ const Dash = () => {
 
     useEffect(() => {
         const db = getDatabase(app);
-        const tileRef = ref(db, 'Tiles');
+        const tileRef = ref(db, 'Tiles/');
         // const tileRef = ref(db, 'Users/' + user.uid + '/Tiles');
     
         onValue(tileRef, (snapshot) => {

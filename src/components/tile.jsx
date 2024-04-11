@@ -10,15 +10,38 @@ const Tile = ({label, icon, link}) => {
     const [iconUrl, setIconUrl] = useState(null);
 
     useEffect(() => {
-        const fetchIcon = async () => {
-            const storage = getStorage(app);
-            const iconRef = ref(storage, icon);
+        const fetchAndCacheIcon = async () => {
+            try {
+                const cache = await caches.open('app-icons');
+                const cachedResponse = await cache.match(icon);
         
-            const url = await getDownloadURL(iconRef);
-            setIconUrl(url);
+                if (cachedResponse) {
+                // Use the cached icon URL
+                    const cachedUrl = await cachedResponse.url;
+                    setIconUrl(cachedUrl);
+                } 
+                else {
+                // Fetch the icon from Firebase Storage and cache it
+                    const storage = getStorage(app);
+                    const iconRef = ref(storage, icon);
+                    const url = await getDownloadURL(iconRef);
+                // Cache the fetched icon
+                    const response = await fetch(url);
+                    if (response.ok) {
+                        await cache.put(url, response.clone());
+                        setIconUrl(url);
+                    } 
+                    else {
+                        throw new Error(`Icon fetch failed with status: ${response.status}`);
+                    }
+                }
+            } 
+            catch (error) {
+                console.error('Error fetching and caching icon:', error);
             }
+        };
     
-        fetchIcon();
+        fetchAndCacheIcon();
     }, [icon]);
     
     // const handleImageError = (event) => {
@@ -34,7 +57,37 @@ const Tile = ({label, icon, link}) => {
             </div>
             <label id="tilename">{label}</label>
         </a>
-    )
-}
+    );
+};
 
 export default Tile
+
+// useEffect(() => {
+//     const fetchAndCacheIcon = async () => {
+//         try {
+//             const cache = await caches.open('app-icons');
+//             const cachedResponse = await cache.match(icon);
+    
+//             if (cachedResponse) {
+//             // Use the cached icon URL
+//                 const cachedUrl = await cachedResponse.url;
+//                 setIconUrl(cachedUrl);
+//             } 
+//             else {
+//             // Fetch the icon from Firebase Storage and cache it
+//                 const storage = getStorage(app);
+//                 const iconRef = ref(storage, icon);
+//                 const url = await getDownloadURL(iconRef);
+//             // Cache the fetched icon
+//                 const response = await fetch(url);
+//                 await cache.put(icon, response.clone());
+//                 setIconUrl(url);
+//             }
+//         } 
+//         catch (error) {
+//             console.error('Error fetching and caching icon:', error);
+//         }
+//     };
+
+//     fetchAndCacheIcon();
+// }, [icon]);
