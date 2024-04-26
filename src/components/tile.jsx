@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import './styles/tile.css'
 import { firebaseConfig, app } from '../firebaseConfig'
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
-// import fallbackImage from '../../public/icons/light/Icon.png';
+import fallbackImage from '../../public/icons/light/Icon.png';
 
 
-const Tile = ({label, icon, link}) => {
+const Tile = ({ label, icon, link, onIconLoad }) => {
 
     const [iconUrl, setIconUrl] = useState(null);
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
         const fetchAndCacheIcon = async () => {
@@ -19,6 +20,7 @@ const Tile = ({label, icon, link}) => {
                 // Use the cached icon URL
                     const cachedUrl = await cachedResponse.url;
                     setIconUrl(cachedUrl);
+                    onIconLoad();
                 } 
                 else {
                 // Fetch the icon from Firebase Storage and cache it
@@ -30,6 +32,7 @@ const Tile = ({label, icon, link}) => {
                     if (response.ok) {
                         await cache.put(url, response.clone());
                         setIconUrl(url);
+                        onIconLoad();
                     } 
                     else {
                         throw new Error(`Icon fetch failed with status: ${response.status}`);
@@ -38,6 +41,7 @@ const Tile = ({label, icon, link}) => {
             } 
             catch (error) {
                 console.error('Error fetching and caching icon:', error);
+                onIconLoad(error);
             }
         };
     
@@ -53,7 +57,15 @@ const Tile = ({label, icon, link}) => {
                 <img src="/icons/light/More_Options.png" alt="" /> 
             </button>
             <div className="icon-container">
-                {iconUrl && <img src={iconUrl} alt="" />}
+                {/* {iconUrl && <img src={iconUrl || fallbackImage} alt="" />} */}
+                <img
+                    src={loaded ? iconUrl : fallbackImage}
+                    alt={label}
+                    onLoad={() => setLoaded(true)}
+                    onError={() => setIconUrl(fallbackImage)} // Fallback on error
+                    loading="lazy" // Lazy loading
+                    style={{ opacity: loaded ? 1 : 0 }} // Fade in the icon once loaded
+                />
             </div>
             <label id="tilename">{label}</label>
         </a>

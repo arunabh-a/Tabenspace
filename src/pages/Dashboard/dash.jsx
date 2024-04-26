@@ -1,32 +1,33 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { getDatabase, ref, onValue } from "firebase/database";
-import { app } from '../../firebaseConfig'
+import { app, storage, db } from '../../firebaseConfig'
 import './dash-style.css'
 import '/src/index.css'
 import '/src/App.css'
 import Tile from '../../components/tile'
 import Nav from '../../components/nav'
 import AddTile from '../../components/addTile'
+import Preloader from '../../components/preloader';
+
 // import { tileRef } from '../Login/login';
+
 
 const Dash = () => {
     const [tiles, setTiles] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Set styles when component mounts
         document.body.style.backgroundColor = '#F7FBFC';
-        // Other styles...
-    
-        // Revert styles when component unmounts
+
         return () => {
+
             document.body.style.backgroundColor = '';
-          // Reset other styles...
+        
         };
-      }, []);
+    }, []);
 
     useEffect(() => {
-        const db = getDatabase(app);
         const tileRef = ref(db, 'Tiles/');
         // const tileRef = ref(db, 'Users/' + user.uid + '/Tiles');
     
@@ -40,24 +41,38 @@ const Dash = () => {
                 }
         
                 setTiles(tilesArray);
+                setLoading(false);
             } 
             else {
                 console.log("No data available");
+                setLoading(false);
             }
         });
-    }, 
-    []);
+}, 
+[]);
+
+    if (loading) {
+        return <Preloader loading={loading} loadCaption={"Preloading Stuff ..."} />;
+    }
 
     return (
         <div className="App">
             <Nav />
             <div className="tiles">
-                {tiles.map((tile) => (
+                {tiles.map((tile, index) => (
                     <Tile
                         key={tile.id}
                         label={tile.label}
                         icon={tile.icon}
                         link={tile.link}
+                        onIconLoad={(error) => {
+                            if (index === tiles.length - 1) {
+                                setLoading(false); // Hide the preloader
+                            }
+                            if (error) {
+                                console.error('Error loading icon:', error);
+                            }
+                        }}  
                     />
                 ))}
             </div> 
@@ -69,6 +84,5 @@ const Dash = () => {
 }
 
 export default Dash
-
 
 
