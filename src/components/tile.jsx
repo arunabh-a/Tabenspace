@@ -1,14 +1,37 @@
 import React, { useEffect, useState } from 'react'
+import ReactDOM from 'react-dom';
 import './styles/tile.css'
 import { firebaseConfig, app } from '../firebaseConfig'
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
-import fallbackImage from '../../public/icons/light/Icon.png';
+import fallbackImage from '/public/icons/light/Icon.png';
+import TileOption from './modals/tile-option';
 
 
 const Tile = ({ label, icon, link, onIconLoad }) => {
 
     const [iconUrl, setIconUrl] = useState(null);
     const [loaded, setLoaded] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+
+
+    const handleOpenModal = () => {
+        setShowModal(true);
+        document.body.classList.add('modal-active');
+    }
+
+    const handleCloseModal = () => {
+        document.body.classList.remove('modal-active');
+        // Start the closing animation and then hide the modal
+        const modalContainer = document.getElementById('modal-container');
+        if (modalContainer) {
+            modalContainer.classList.add('out');
+            setTimeout(() => {
+                setShowModal(false);
+                modalContainer.classList.remove('out'); // Reset the animation class for next time
+            }, 300); // This should match the duration of the closing animation
+        }
+    }
+
 
     useEffect(() => {
         const fetchAndCacheIcon = async () => {
@@ -47,20 +70,28 @@ const Tile = ({ label, icon, link, onIconLoad }) => {
     
         fetchAndCacheIcon();
     }, [icon]);
-    
-    // const handleImageError = (event) => {
-    //     event.target.src = fallbackImage;
+
+
+    const renderModal = () => {
+        return ReactDOM.createPortal(
+            <TileOption onClose={handleCloseModal} />,
+          document.body // Append the modal as a child of the body element
+        );
+    };
 
     return (
         <a href={link} className="tile">
-            <button className="more">
+            <button className="more" onClick={handleOpenModal}>
                 <img src="/icons/light/More_Options.png" alt="" /> 
             </button>
+            
+            {showModal && renderModal()}
+            
             <div className="icon-container">
-                {/* {iconUrl && <img src={iconUrl || fallbackImage} alt="" />} */}
+
                 <img
                     src={loaded ? iconUrl : fallbackImage}
-                    alt={label}
+                    alt={fallbackImage}
                     onLoad={() => setLoaded(true)}
                     onError={() => setIconUrl(fallbackImage)} // Fallback on error
                     loading="lazy" // Lazy loading

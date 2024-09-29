@@ -1,7 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { getDatabase, ref, onValue } from "firebase/database";
-import { app, storage, db } from '../../firebaseConfig'
+import { app, storage, db, auth } from '../../firebaseConfig'
+import { signOut } from 'firebase/auth';
 import './dash-style.css'
 import '/src/index.css'
 import '/src/App.css'
@@ -55,6 +56,15 @@ const Dash = () => {
         return <Preloader loading={loading} loadCaption={"Preloading Stuff ..."} />;
     }
 
+    const handleLogout = () => {
+
+    try {
+        signOut(auth);
+        console.log("User signed out successfully.");
+      } catch (error) {
+        console.error("Error signing out:", error);
+      }
+    }
     return (
         <div className="App">
             <Nav />
@@ -77,7 +87,7 @@ const Dash = () => {
                 ))}
             </div> 
             <AddTile />
-            
+            <button id="logout" onClick={handleLogout}>Logout</button>
 
         </div>
     )

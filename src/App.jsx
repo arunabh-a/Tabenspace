@@ -4,6 +4,7 @@ import Dash from './pages/Dashboard/dash';
 import Login from './pages/Login/login';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import Preloader from './components/preloader';
+import TileOption from './components/modals/tile-option';
 
 
 function App() {
@@ -37,8 +38,10 @@ function App() {
                     
 
                     <Route path="/" element={currentUser ? <Navigate to="/dashboard" /> : <Navigate to="/auth" />} />
+                    {/* <Login/> */}
                 </Routes>
             </Router>
+
 
         </div>
     )
